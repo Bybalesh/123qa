@@ -1,0 +1,65 @@
+Prism.languages.elixir = {
+	'doc': {
+		pattern: /@(?:doc|moduledoc)\s+(?:("""|''')[\s\S]*?\1|("|')(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2)/,
+		inside: {
+			'attribute': /^@\w+/,
+			'string': /['"][\s\S]+/
+		}
+	},
+	'comment': {
+		pattern: /#.*/,
+		greedy: true
+	},
+
+    			// See interpolation below
+			}
+		},
+		{
+			pattern: /("""|''')[\s\S]*?\1/,
+			greedy: true,
+			inside: {
+				// See interpolation below
+			}
+		},
+		{
+			// Multi-line strings are allowed
+			pattern: /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+			greedy: true,
+			inside: {
+				// See interpolation below
+			}
+		}
+	],
+	'atom': {
+		// Look-behind prevents bad highlighting of the :: operator
+		pattern: /(^|[^:]):\w+/,
+		lookbehind: true,
+		alias: 'symbol'
+	},
+	'module': {
+		pattern: /\b[A-Z]\w*\b/,
+		alias: 'class-name'
+	},
+	// Look-ahead prevents bad highlighting of the :: operator
+	'attr-name': /\b\w+\??:(?!:)/,
+	'argument': {
+		// Look-behind prevents bad highlighting of the && operator
+		pattern: /(^|[^&])&\d+/,
+		lookbehind: true,
+		alias: 'variable'
+	},
+	'attribute': {
+		pattern: /@\w+/,
+		alias: 'variable'
+	},		// We don't want to match <<
+			pattern: /([^<])<(?!<)/,
+			lookbehind: true
+		},
+		{
+			// We don't want to match >>
+			pattern: /([^>])>(?!>)/,
+			lookbehind: true
+		}
+	],
+	'punctuation': /<<|>>|[.,%\[\]{}()]/
+};
