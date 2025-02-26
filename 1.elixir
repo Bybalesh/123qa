@@ -1,3 +1,4 @@
+
 Prism.languages.elixir = {
 	'doc': {
 		pattern: /@(?:doc|moduledoc)\s+(?:("""|''')[\s\S]*?\1|("|')(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2)/,
@@ -26,10 +27,9 @@ Prism.languages.elixir = {
 			pattern: /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 			greedy: true,
 			inside: {
-				// See interpolation below
-			}
-		}
-	],
+   
+                        {'argument': {}
+
 	'atom': {
 		// Look-behind prevents bad highlighting of the :: operator
 		pattern: /(^|[^:]):\w+/,
@@ -59,7 +59,3 @@ Prism.languages.elixir = {
 			// We don't want to match >>
 			pattern: /([^>])>(?!>)/,
 			lookbehind: true
-		}
-	],
-	'punctuation': /<<|>>|[.,%\[\]{}()]/
-};
